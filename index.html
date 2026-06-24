@@ -1,0 +1,352 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-status-bar-style" content="default">
+<meta name="apple-mobile-web-app-title" content="Nik HQ">
+<meta name="theme-color" content="#ffffff">
+<title>Nik HQ</title>
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@tabler/icons-webfont@3.19.0/dist/tabler-icons.min.css">
+<style>
+* { box-sizing: border-box; margin: 0; padding: 0; -webkit-tap-highlight-color: transparent; }
+body { font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif; background: #f5f5f0; min-height: 100vh; }
+.app { max-width: 430px; margin: 0 auto; background: #f5f5f0; min-height: 100vh; display: flex; flex-direction: column; }
+.nav-header { background: #fff; padding: 16px 16px 12px; border-bottom: 0.5px solid rgba(0,0,0,0.1); position: sticky; top: 0; z-index: 10; }
+.nav-header h1 { font-size: 22px; font-weight: 600; color: #111; }
+.nav-header p { font-size: 13px; color: #888; margin-top: 2px; }
+.content { flex: 1; padding: 12px; padding-bottom: 80px; overflow-y: auto; }
+.page { display: none; }
+.page.active { display: block; }
+.tab-bar { background: #fff; border-top: 0.5px solid rgba(0,0,0,0.1); display: flex; position: fixed; bottom: 0; left: 50%; transform: translateX(-50%); width: 100%; max-width: 430px; padding: 8px 0 20px; z-index: 20; }
+.tab { flex: 1; text-align: center; font-size: 10px; color: #999; cursor: pointer; padding: 4px 0; }
+.tab.active { color: #111; }
+.tab i { display: block; font-size: 22px; margin-bottom: 2px; }
+.section-label { font-size: 11px; font-weight: 600; color: #aaa; text-transform: uppercase; letter-spacing: 0.06em; margin: 14px 0 6px; }
+.section-label:first-child { margin-top: 0; }
+.task-card { background: #fff; border-radius: 12px; border: 0.5px solid rgba(0,0,0,0.08); padding: 11px 13px; margin-bottom: 6px; display: flex; align-items: flex-start; gap: 10px; cursor: pointer; -webkit-user-select: none; }
+.task-card:active { opacity: 0.7; transform: scale(0.99); }
+.task-check { width: 20px; height: 20px; border-radius: 50%; border: 1.5px solid #ddd; flex-shrink: 0; margin-top: 1px; }
+.task-check.p1 { border-color: #E24B4A; }
+.task-check.p2 { border-color: #EF9F27; }
+.task-body { flex: 1; min-width: 0; }
+.task-title { font-size: 14px; color: #111; line-height: 1.35; }
+.task-meta { display: flex; gap: 5px; margin-top: 5px; flex-wrap: wrap; align-items: center; }
+.tag { font-size: 11px; padding: 2px 7px; border-radius: 5px; font-weight: 500; }
+.tag-mo { background: #E6F1FB; color: #185FA5; }
+.tag-biz { background: #FAEEDA; color: #854F0B; }
+.tag-job { background: #EEEDFE; color: #534AB7; }
+.tag-personal { background: #E1F5EE; color: #0F6E56; }
+.tag-overdue { background: #FCEBEB; color: #A32D2D; }
+.proj-grid { display: grid; grid-template-columns: repeat(2, 1fr); gap: 10px; margin-bottom: 12px; }
+.proj-card { background: #fff; border-radius: 14px; border: 0.5px solid rgba(0,0,0,0.08); padding: 14px; cursor: pointer; -webkit-user-select: none; }
+.proj-card:active { opacity: 0.7; }
+.proj-icon { font-size: 22px; margin-bottom: 8px; }
+.proj-name { font-size: 13px; font-weight: 600; color: #111; }
+.proj-count { font-size: 11px; color: #888; margin-top: 2px; }
+.stat-row { display: grid; grid-template-columns: repeat(2, 1fr); gap: 10px; margin-bottom: 12px; }
+.stat-card { background: #f0efe8; border-radius: 12px; padding: 12px; }
+.stat-label { font-size: 11px; color: #777; }
+.stat-val { font-size: 26px; font-weight: 600; color: #111; margin-top: 2px; }
+.mo-dot { width: 9px; height: 9px; border-radius: 50%; flex-shrink: 0; margin-top: 5px; }
+.capture-wrap { background: #fff; border-radius: 12px; border: 0.5px solid rgba(0,0,0,0.08); padding: 11px 13px; display: flex; align-items: center; gap: 10px; margin-bottom: 8px; }
+.capture-input { flex: 1; border: none; background: transparent; font-size: 15px; color: #111; outline: none; font-family: inherit; }
+.capture-input::placeholder { color: #bbb; }
+.send-btn { width: 32px; height: 32px; border-radius: 50%; background: #111; border: none; cursor: pointer; display: flex; align-items: center; justify-content: center; flex-shrink: 0; }
+.send-btn i { font-size: 16px; color: #fff; }
+.proj-btns { display: grid; grid-template-columns: repeat(2, 1fr); gap: 7px; margin-bottom: 12px; }
+.proj-btn { font-size: 12px; padding: 9px 10px; text-align: left; background: #fff; border: 0.5px solid rgba(0,0,0,0.1); border-radius: 10px; cursor: pointer; color: #333; font-family: inherit; display: flex; align-items: center; gap: 5px; }
+.proj-btn:active { opacity: 0.7; }
+.quick-btns { display: flex; flex-direction: column; gap: 6px; }
+.quick-btn { font-size: 14px; text-align: left; padding: 12px 14px; background: #fff; border: 0.5px solid rgba(0,0,0,0.08); border-radius: 12px; cursor: pointer; color: #333; font-family: inherit; }
+.quick-btn:active { opacity: 0.7; }
+.sel-proj { font-size: 12px; color: #888; text-align: center; margin-bottom: 10px; min-height: 18px; }
+.form-card { background: #fff; border-radius: 16px; border: 0.5px solid rgba(0,0,0,0.08); padding: 16px; margin-bottom: 10px; }
+.form-card h3 { font-size: 15px; font-weight: 600; color: #111; margin-bottom: 14px; display: flex; align-items: center; gap: 7px; }
+.form-row { margin-bottom: 13px; }
+.form-label { font-size: 11px; color: #888; margin-bottom: 5px; display: block; font-weight: 500; text-transform: uppercase; letter-spacing: 0.04em; }
+.amount-wrap { display: flex; align-items: center; gap: 6px; border-bottom: 1.5px solid #e0e0e0; padding-bottom: 6px; }
+.amount-input { font-size: 28px; font-weight: 600; border: none; background: transparent; color: #111; outline: none; width: 100%; font-family: inherit; }
+.amount-input::placeholder { color: #ccc; font-size: 28px; font-weight: 400; }
+.amount-cur { font-size: 16px; color: #888; flex-shrink: 0; }
+.name-input { width: 100%; border: 0.5px solid rgba(0,0,0,0.12); border-radius: 10px; padding: 10px 12px; font-size: 15px; background: #fff; color: #111; outline: none; font-family: inherit; }
+.name-input:focus { border-color: rgba(0,0,0,0.3); }
+.cat-grid { display: grid; grid-template-columns: repeat(2, 1fr); gap: 7px; }
+.cat-btn { font-size: 12px; padding: 9px 6px; border-radius: 10px; border: 0.5px solid rgba(0,0,0,0.1); background: #fff; color: #555; cursor: pointer; text-align: center; font-family: inherit; transition: all 0.1s; }
+.cat-btn.sel { border-color: #EF9F27; background: #FAEEDA; color: #854F0B; font-weight: 600; }
+.pay-wrap { display: flex; gap: 7px; flex-wrap: wrap; }
+.pay-btn { font-size: 12px; padding: 7px 12px; border-radius: 20px; border: 0.5px solid rgba(0,0,0,0.1); background: #fff; color: #555; cursor: pointer; font-family: inherit; }
+.pay-btn.sel { border-color: #378ADD; background: #E6F1FB; color: #185FA5; font-weight: 600; }
+.type-wrap { display: flex; gap: 7px; }
+.type-btn { flex: 1; font-size: 12px; padding: 8px; border-radius: 10px; border: 0.5px solid rgba(0,0,0,0.1); background: #fff; color: #555; cursor: pointer; text-align: center; font-family: inherit; }
+.type-btn.sel { border-color: #1D9E75; background: #E1F5EE; color: #0F6E56; font-weight: 600; }
+.notes-input { width: 100%; border: 0.5px solid rgba(0,0,0,0.12); border-radius: 10px; padding: 10px 12px; font-size: 14px; background: #fff; color: #111; outline: none; font-family: inherit; resize: none; }
+.submit-btn { width: 100%; padding: 14px; background: #111; color: #fff; border: none; border-radius: 12px; font-size: 15px; font-weight: 600; cursor: pointer; font-family: inherit; margin-top: 4px; }
+.submit-btn:active { opacity: 0.8; transform: scale(0.99); }
+.toast { position: fixed; bottom: 90px; left: 50%; transform: translateX(-50%); background: #111; color: #fff; padding: 10px 20px; border-radius: 20px; font-size: 13px; opacity: 0; transition: opacity 0.3s; pointer-events: none; z-index: 100; white-space: nowrap; }
+.toast.show { opacity: 1; }
+</style>
+</head>
+<body>
+<div class="app">
+  <div class="nav-header">
+    <h1 id="page-title">Today</h1>
+    <p id="page-sub" id="page-sub">Загрузка...</p>
+  </div>
+
+  <div class="content">
+
+    <div class="page active" id="page-today">
+      <div class="section-label">Срочные</div>
+      <div class="task-card" onclick="openCowork('Покажи задачи на сегодня p1 из Todoist')">
+        <div class="task-check p1"></div>
+        <div class="task-body">
+          <div class="task-title">Заплатить Эдгарду за визу 12262</div>
+          <div class="task-meta"><span class="tag tag-personal">Personal</span><span class="tag tag-overdue">сегодня</span></div>
+        </div>
+      </div>
+      <div class="task-card" onclick="openCowork('Покажи задачи на сегодня по Job Search')">
+        <div class="task-check p1"></div>
+        <div class="task-body">
+          <div class="task-title">Denis Deputatov — предложить Theerathorn</div>
+          <div class="task-meta"><span class="tag tag-job">Job Search</span><span class="tag tag-overdue">сегодня</span></div>
+        </div>
+      </div>
+      <div class="section-label">На сегодня</div>
+      <div class="task-card">
+        <div class="task-check p2"></div>
+        <div class="task-body">
+          <div class="task-title">Сделать полину</div>
+          <div class="task-meta"><span class="tag tag-mo">Moscow Region</span></div>
+        </div>
+      </div>
+      <div class="task-card">
+        <div class="task-check"></div>
+        <div class="task-body">
+          <div class="task-title">Изучить FoodStory</div>
+          <div class="task-meta"><span class="tag tag-biz">Bite Me!</span></div>
+        </div>
+      </div>
+      <div class="task-card">
+        <div class="task-check"></div>
+        <div class="task-body">
+          <div class="task-title">Log off!</div>
+          <div class="task-meta"><span class="tag tag-mo">Moscow Region</span><span style="font-size:11px;color:#aaa">21:00</span></div>
+        </div>
+      </div>
+      <div style="text-align:center;margin-top:14px">
+        <a href="https://claude.ai" style="font-size:13px;color:#888;text-decoration:none">Открыть Cowork для обновления →</a>
+      </div>
+    </div>
+
+    <div class="page" id="page-projects">
+      <div class="stat-row">
+        <div class="stat-card"><div class="stat-label">Сегодня</div><div class="stat-val">5</div></div>
+        <div class="stat-card"><div class="stat-label">Проектов</div><div class="stat-val">4</div></div>
+      </div>
+      <div class="section-label">Домены</div>
+      <div class="proj-grid">
+        <div class="proj-card"><div class="proj-icon"><i class="ti ti-briefcase" style="color:#378ADD"></i></div><div class="proj-name">Moscow Region</div><div class="proj-count">2 задачи сегодня</div></div>
+        <div class="proj-card"><div class="proj-icon"><i class="ti ti-truck" style="color:#EF9F27"></i></div><div class="proj-name">Bite Me!</div><div class="proj-count">1 задача сегодня</div></div>
+        <div class="proj-card"><div class="proj-icon"><i class="ti ti-search" style="color:#7F77DD"></i></div><div class="proj-name">Job Search</div><div class="proj-count">1 задача сегодня</div></div>
+        <div class="proj-card"><div class="proj-icon"><i class="ti ti-home" style="color:#1D9E75"></i></div><div class="proj-name">Personal</div><div class="proj-count">1 задача сегодня</div></div>
+      </div>
+      <div class="section-label">МО проекты</div>
+      <div class="task-card"><div class="mo-dot" style="background:#378ADD"></div><div class="task-body"><div class="task-title">Социология для Минтера</div><div class="task-meta"><span class="tag tag-mo">#357356</span></div></div></div>
+      <div class="task-card"><div class="mo-dot" style="background:#378ADD"></div><div class="task-body"><div class="task-title">Объекты культурного наследия</div><div class="task-meta"><span class="tag tag-mo">#406829</span></div></div></div>
+      <div class="task-card"><div class="mo-dot" style="background:#1D9E75"></div><div class="task-body"><div class="task-title">DataLens сопровождение</div><div class="task-meta"><span class="tag tag-mo">#396728</span></div></div></div>
+      <div class="task-card"><div class="mo-dot" style="background:#1D9E75"></div><div class="task-body"><div class="task-title">МЗ МО дашборды</div><div class="task-meta"><span class="tag tag-mo">#150521</span></div></div></div>
+      <div class="task-card"><div class="mo-dot" style="background:#EF9F27"></div><div class="task-body"><div class="task-title">БТ для ТК и РМ ЖКХ</div><div class="task-meta"><span style="font-size:11px;color:#aaa">новый проект</span></div></div></div>
+    </div>
+
+    <div class="page" id="page-capture">
+      <div class="section-label">Задача в Todoist</div>
+      <div class="capture-wrap">
+        <input class="capture-input" id="task-input" placeholder="Новая задача..." type="text" />
+        <button class="send-btn" onclick="doCapture()" aria-label="Добавить"><i class="ti ti-arrow-up"></i></button>
+      </div>
+      <div class="proj-btns">
+        <button class="proj-btn" onclick="setProj('Moscow Region Job')"><i class="ti ti-briefcase" style="color:#378ADD;font-size:15px"></i>Moscow Region</button>
+        <button class="proj-btn" onclick="setProj('Business')"><i class="ti ti-truck" style="color:#EF9F27;font-size:15px"></i>Bite Me!</button>
+        <button class="proj-btn" onclick="setProj('Job Search')"><i class="ti ti-search" style="color:#7F77DD;font-size:15px"></i>Job Search</button>
+        <button class="proj-btn" onclick="setProj('Personal / Family')"><i class="ti ti-home" style="color:#1D9E75;font-size:15px"></i>Personal</button>
+      </div>
+      <div class="sel-proj" id="sel-proj"></div>
+      <div class="section-label">Быстрые команды</div>
+      <div class="quick-btns">
+        <button class="quick-btn" onclick="openCowork('Какие задачи просрочены?')">Просроченные задачи →</button>
+        <button class="quick-btn" onclick="openCowork('Покажи мой еженедельный отчёт МО')">Отчёт МО →</button>
+        <button class="quick-btn" onclick="openCowork('Сводка по Bite Me! — финансы и задачи')">Сводка Bite Me! →</button>
+        <button class="quick-btn" onclick="openCowork('Что у меня запланировано на эту неделю?')">План на неделю →</button>
+      </div>
+    </div>
+
+    <div class="page" id="page-expense">
+      <div class="form-card">
+        <h3><i class="ti ti-truck" style="color:#EF9F27;font-size:20px"></i>Bite Me! — новый расход</h3>
+
+        <div class="form-row">
+          <span class="form-label">Сумма</span>
+          <div class="amount-wrap">
+            <input class="amount-input" id="exp-amount" type="number" placeholder="0" inputmode="numeric" />
+            <span class="amount-cur">THB</span>
+          </div>
+        </div>
+
+        <div class="form-row">
+          <span class="form-label">Название</span>
+          <input class="name-input" id="exp-name" type="text" placeholder="Что купили?" />
+        </div>
+
+        <div class="form-row">
+          <span class="form-label">Категория</span>
+          <div class="cat-grid">
+            <button class="cat-btn" onclick="selCat(this,'Food/COGS')">🥘 Food/COGS</button>
+            <button class="cat-btn" onclick="selCat(this,'Employee')">👤 Employee</button>
+            <button class="cat-btn" onclick="selCat(this,'Fuel')">⛽ Fuel</button>
+            <button class="cat-btn" onclick="selCat(this,'Gas')">🔥 Gas</button>
+            <button class="cat-btn" onclick="selCat(this,'Water')">💧 Water</button>
+            <button class="cat-btn" onclick="selCat(this,'Production')">🔧 Production</button>
+            <button class="cat-btn" onclick="selCat(this,'Marketing')">📣 Marketing</button>
+            <button class="cat-btn" onclick="selCat(this,'Truck')">🚚 Truck</button>
+            <button class="cat-btn" onclick="selCat(this,'Services')">🛠 Services</button>
+            <button class="cat-btn" onclick="selCat(this,'Misc')">📦 Misc</button>
+          </div>
+        </div>
+
+        <div class="form-row">
+          <span class="form-label">Оплата</span>
+          <div class="pay-wrap">
+            <button class="pay-btn" onclick="selPay(this,'Cash')">Cash</button>
+            <button class="pay-btn" onclick="selPay(this,'PromptPay')">PromptPay</button>
+            <button class="pay-btn" onclick="selPay(this,'Transfer')">Transfer</button>
+            <button class="pay-btn" onclick="selPay(this,'Cash/QR')">Cash/QR</button>
+          </div>
+        </div>
+
+        <div class="form-row">
+          <span class="form-label">Тип</span>
+          <div class="type-wrap">
+            <button class="type-btn sel" onclick="selType(this,'OPEX')">OPEX</button>
+            <button class="type-btn" onclick="selType(this,'CAPEX')">CAPEX</button>
+            <button class="type-btn" onclick="selType(this,'Fund Inject')">Fund Inject</button>
+          </div>
+        </div>
+
+        <div class="form-row">
+          <span class="form-label">Заметка</span>
+          <textarea class="notes-input" id="exp-notes" rows="2" placeholder="Детали (необязательно)..."></textarea>
+        </div>
+
+        <button class="submit-btn" onclick="submitExpense()">Добавить расход</button>
+      </div>
+    </div>
+
+  </div>
+
+  <div class="tab-bar">
+    <div class="tab active" onclick="showPage('today',this)"><i class="ti ti-sun"></i>Today</div>
+    <div class="tab" onclick="showPage('projects',this)"><i class="ti ti-layout-grid"></i>Projects</div>
+    <div class="tab" onclick="showPage('capture',this)"><i class="ti ti-edit"></i>Capture</div>
+    <div class="tab" onclick="showPage('expense',this)"><i class="ti ti-cash"></i>Расход</div>
+  </div>
+</div>
+
+<div class="toast" id="toast"></div>
+
+<script>
+const titles = {
+  today: ['Today', ''],
+  projects: ['Projects', '5 активных проектов'],
+  capture: ['Capture', 'Задачи и команды'],
+  expense: ['Bite Me! Расход', 'Добавить в Expenses DB']
+};
+
+function showPage(name, tab) {
+  document.querySelectorAll('.page').forEach(p => p.classList.remove('active'));
+  document.querySelectorAll('.tab').forEach(t => t.classList.remove('active'));
+  document.getElementById('page-' + name).classList.add('active');
+  tab.classList.add('active');
+  document.getElementById('page-title').textContent = titles[name][0];
+  document.getElementById('page-sub').textContent = titles[name][1];
+}
+
+function setDate() {
+  const d = new Date();
+  const days = ['Воскресенье','Понедельник','Вторник','Среда','Четверг','Пятница','Суббота'];
+  const months = ['января','февраля','марта','апреля','мая','июня','июля','августа','сентября','октября','ноября','декабря'];
+  document.getElementById('page-sub').textContent = days[d.getDay()] + ', ' + d.getDate() + ' ' + months[d.getMonth()] + ' ' + d.getFullYear();
+}
+setDate();
+
+function openCowork(msg) {
+  const url = 'https://claude.ai/new?q=' + encodeURIComponent(msg);
+  window.open(url, '_blank');
+}
+
+function showToast(msg) {
+  const t = document.getElementById('toast');
+  t.textContent = msg;
+  t.classList.add('show');
+  setTimeout(() => t.classList.remove('show'), 2500);
+}
+
+let selProject = 'inbox';
+function setProj(name) {
+  selProject = name;
+  const labels = {'Moscow Region Job':'Moscow Region','Business':'Bite Me!','Job Search':'Job Search','Personal / Family':'Personal'};
+  document.getElementById('sel-proj').textContent = 'Проект: ' + labels[name];
+  document.getElementById('task-input').focus();
+}
+
+function doCapture() {
+  const val = document.getElementById('task-input').value.trim();
+  if (!val) return;
+  const msg = 'Добавь задачу в Todoist: "' + val + '" в проект ' + selProject;
+  openCowork(msg);
+  document.getElementById('task-input').value = '';
+  showToast('Открываю Cowork...');
+}
+
+document.getElementById('task-input').addEventListener('keydown', e => { if (e.key === 'Enter') doCapture(); });
+
+let expCat = '', expPay = '', expType = 'OPEX';
+
+function selCat(btn, val) {
+  document.querySelectorAll('.cat-btn').forEach(b => b.classList.remove('sel'));
+  btn.classList.add('sel'); expCat = val;
+}
+function selPay(btn, val) {
+  document.querySelectorAll('.pay-btn').forEach(b => b.classList.remove('sel'));
+  btn.classList.add('sel'); expPay = val;
+}
+function selType(btn, val) {
+  document.querySelectorAll('.type-btn').forEach(b => b.classList.remove('sel'));
+  btn.classList.add('sel'); expType = val;
+}
+
+function submitExpense() {
+  const amount = document.getElementById('exp-amount').value;
+  const name = document.getElementById('exp-name').value.trim();
+  const notes = document.getElementById('exp-notes').value.trim();
+  if (!amount || !name) { showToast('Заполни сумму и название'); return; }
+  if (!expCat) { showToast('Выбери категорию'); return; }
+  if (!expPay) { showToast('Выбери способ оплаты'); return; }
+  const d = new Date();
+  const dateStr = d.toISOString().split('T')[0];
+  const months = ['January','February','March','April','May','June','July','August','September','October','November','December'];
+  const month = months[d.getMonth()] + ' ' + d.getFullYear();
+  let msg = 'Добавь расход в Bite Me! Expenses DB:\n- Название: ' + name + '\n- Сумма: ' + amount + ' THB\n- Категория: ' + expCat + '\n- Оплата: ' + expPay + '\n- Тип: ' + expType + '\n- Дата: ' + dateStr + '\n- Месяц: ' + month;
+  if (notes) msg += '\n- Заметка: ' + notes;
+  openCowork(msg);
+  document.getElementById('exp-amount').value = '';
+  document.getElementById('exp-name').value = '';
+  document.getElementById('exp-notes').value = '';
+  document.querySelectorAll('.cat-btn,.pay-btn').forEach(b => b.classList.remove('sel'));
+  expCat = ''; expPay = '';
+  showToast('Открываю Cowork...');
+}
+</script>
+</body>
+</html>
