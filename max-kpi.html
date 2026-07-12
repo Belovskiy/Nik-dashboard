@@ -100,7 +100,7 @@ body { font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif; b
 <div id="milestone-list"></div>
 </div>
 
-<div class="section-label">CURRENT PERIOD <span class="th">ช่วงเวลาปัจจุบัน</span></div>
+<div class="section-label">WEEK <span class="th">สัปดาห์</span></div>
 <div class="period-wrap" id="period-wrap"></div>
 <div class="period-desc" id="period-desc"></div>
 
@@ -178,8 +178,8 @@ body { font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif; b
 </div>
 
 <div class="form-card">
-<h3><i class="ti ti-target-arrow" style="color:#1D9E75"></i>Onboarding (this period)</h3>
-<div class="th-sub">ออนบอร์ด (ช่วงนี้)</div>
+<h3><i class="ti ti-target-arrow" style="color:#1D9E75"></i>Onboarding (this week)</h3>
+<div class="th-sub">ออนบอร์ด (สัปดาห์นี้)</div>
 <div class="form-row">
 <span class="form-label">Milestones completed this week (#)<span class="th">จำนวนงานที่ทำเสร็จสัปดาห์นี้</span></span>
 <input class="num-input" id="milestones-week" type="number" inputmode="numeric" placeholder="0" min="0">
@@ -247,14 +247,14 @@ const milestoneGroups = [
 ];
 
 const periods = [
-{ key: 'Jul 8-12', label: 'Jul 8–12', th: '8–12 ก.ค.' },
-{ key: 'Jul 13', label: 'Jul 13', th: '13 ก.ค.' },
-{ key: 'Jul 14-20', label: 'Jul 14–20', th: '14–20 ก.ค.' },
-{ key: 'Jul 21-25', label: 'Jul 21–25', th: '21–25 ก.ค.' },
-{ key: 'Jul 26-31', label: 'Jul 26–31', th: '26–31 ก.ค.' },
-{ key: 'Aug W1', label: 'Aug W1', th: 'ส.ค. สัปดาห์ 1' },
-{ key: 'Aug W2', label: 'Aug W2', th: 'ส.ค. สัปดาห์ 2' },
-{ key: 'Aug W3', label: 'Aug W3', th: 'ส.ค. สัปดาห์ 3' }
+{ key: 'Jul 8-12', label: 'Week 1', dates: 'Jul 8–12', th: 'สัปดาห์ 1', thDates: '8–12 ก.ค.' },
+{ key: 'Jul 13', label: 'Week 2', dates: 'Jul 13', th: 'สัปดาห์ 2', thDates: '13 ก.ค.' },
+{ key: 'Jul 14-20', label: 'Week 3', dates: 'Jul 14–20', th: 'สัปดาห์ 3', thDates: '14–20 ก.ค.' },
+{ key: 'Jul 21-25', label: 'Week 4', dates: 'Jul 21–25', th: 'สัปดาห์ 4', thDates: '21–25 ก.ค.' },
+{ key: 'Jul 26-31', label: 'Week 5', dates: 'Jul 26–31', th: 'สัปดาห์ 5', thDates: '26–31 ก.ค.' },
+{ key: 'Aug W1', label: 'Week 6', dates: 'Aug W1', th: 'สัปดาห์ 6', thDates: 'ส.ค. สัปดาห์ 1' },
+{ key: 'Aug W2', label: 'Week 7', dates: 'Aug W2', th: 'สัปดาห์ 7', thDates: 'ส.ค. สัปดาห์ 2' },
+{ key: 'Aug W3', label: 'Week 8', dates: 'Aug W3', th: 'สัปดาห์ 8', thDates: 'ส.ค. สัปดาห์ 3' }
 ];
 
 let selectedPeriod = periods[0].key;
@@ -299,7 +299,7 @@ function renderPeriods() {
 const wrap = document.getElementById('period-wrap');
 wrap.innerHTML = periods.map(p => `<button class="period-btn ${p.key===selectedPeriod?'sel':''}" onclick="selectPeriod('${p.key}')">${p.label}</button>`).join('');
 const p = periods.find(p => p.key === selectedPeriod);
-document.getElementById('period-desc').innerHTML = 'Weekly KPI Log column: ' + p.label + '<span class="th">คอลัมน์: ' + p.th + '</span>';
+document.getElementById('period-desc').innerHTML = p.dates + '<span class="th">' + p.thDates + '</span>';
 }
 
 function selectPeriod(key) {
@@ -368,7 +368,7 @@ const engSessions = document.getElementById('english-sessions').value || '0';
 
 const genNotes = document.getElementById('general-notes').value.trim();
 
-let text = 'Обнови Max KPI Tracker (Google Sheet) в столбце "' + p.label + '" вкладки Weekly KPI Log:\n\n';
+let text = 'Обнови Max KPI Tracker (Google Sheet) в столбце "' + p.dates + '" (' + p.label + ') вкладки Weekly KPI Log:\n\n';
 text += 'OPERATIONS:\nPOS daily reports done (#): ' + pos + '\nInventory count completed (Y/N): ' + inv + '\nStock-outs flagged (#): ' + stockouts + '\nOperational issues (brief): ' + (opsIssues || '—') + '\n\n';
 text += 'LINE MAN / DELIVERY:\nOrders received (#): ' + rec + '\nOrders completed (#): ' + comp + '\nCompletion rate (%): ' + rate + '\nComplaints received (#): ' + complaints + '\n\n';
 text += 'MARKETING GROUP:\nMessages responded to (#): ' + msgs + '\nResponse rate (%): ' + respRate + '\nDesign decisions logged (#): ' + design + '\nContent posts coordinated (#): ' + posts + '\n\n';
