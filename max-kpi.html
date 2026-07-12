@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="ru">
+<html lang="en">
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
@@ -16,34 +16,45 @@ body { font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif; b
 .nav-header { background: #fff; padding: 18px 18px 14px; border-bottom: 0.5px solid rgba(0,0,0,0.1); position: sticky; top: 0; z-index: 10; }
 .nav-header h1 { font-size: 22px; font-weight: 600; color: #111; display: flex; align-items: center; gap: 8px; }
 .nav-header p { font-size: 13px; color: #888; margin-top: 3px; }
+.nav-header .th { font-size: 11px; color: #b7ab8e; margin-top: 1px; }
 .content { flex: 1; padding: 14px; padding-bottom: 40px; }
 .hint { background: #FAEEDA; color: #854F0B; font-size: 12.5px; padding: 10px 13px; border-radius: 10px; margin-bottom: 14px; line-height: 1.4; }
-.section-label { font-size: 11px; font-weight: 600; color: #aaa; text-transform: uppercase; letter-spacing: 0.06em; margin: 16px 0 7px; }
+.hint .th { color: #a3792f; font-size: 11px; margin-top: 4px; display: block; }
+.section-label { font-size: 11px; font-weight: 600; color: #aaa; text-transform: uppercase; letter-spacing: 0.06em; margin: 16px 0 3px; }
+.section-label .th { text-transform: none; letter-spacing: 0; font-weight: 400; color: #c2b89a; font-size: 10.5px; margin-left: 6px; }
 .section-label:first-child { margin-top: 0; }
-.week-wrap { display: flex; gap: 6px; overflow-x: auto; padding-bottom: 2px; }
+.week-wrap { display: flex; gap: 6px; overflow-x: auto; padding-bottom: 2px; margin-top: 6px; }
 .week-btn { flex-shrink: 0; font-size: 12px; padding: 8px 12px; border-radius: 20px; border: 0.5px solid rgba(0,0,0,0.1); background: #fff; color: #555; cursor: pointer; font-family: inherit; white-space: nowrap; }
 .week-btn.sel { border-color: #378ADD; background: #E6F1FB; color: #185FA5; font-weight: 600; }
 .week-desc { font-size: 12px; color: #888; margin-top: 8px; }
+.week-desc .th { color: #b7ab8e; font-size: 11px; margin-top: 1px; }
 .form-card { background: #fff; border-radius: 16px; border: 0.5px solid rgba(0,0,0,0.08); padding: 16px; margin-bottom: 10px; }
-.form-card h3 { font-size: 15px; font-weight: 600; color: #111; margin-bottom: 12px; display: flex; align-items: center; gap: 7px; }
+.form-card h3 { font-size: 15px; font-weight: 600; color: #111; display: flex; align-items: center; gap: 7px; }
+.form-card .th-sub { font-size: 11px; color: #b7ab8e; margin: 2px 0 12px 27px; }
 .milestone { display: flex; align-items: flex-start; gap: 10px; padding: 9px 0; border-bottom: 0.5px solid rgba(0,0,0,0.06); cursor: pointer; -webkit-user-select: none; }
 .milestone:last-child { border-bottom: none; }
 .milestone-check { width: 21px; height: 21px; border-radius: 6px; border: 1.5px solid #ddd; flex-shrink: 0; margin-top: 1px; display: flex; align-items: center; justify-content: center; transition: all .1s; }
 .milestone-check.done { background: #1D9E75; border-color: #1D9E75; }
 .milestone-check.done i { color: #fff; font-size: 14px; }
 .milestone-text { font-size: 14px; color: #111; line-height: 1.4; padding-top: 1px; }
+.milestone-th { font-size: 11.5px; color: #b7ab8e; line-height: 1.3; margin-top: 2px; }
 .milestone.done .milestone-text { color: #999; text-decoration: line-through; }
+.milestone.done .milestone-th { color: #ccc; }
 .form-row { margin-bottom: 13px; }
 .form-row:last-child { margin-bottom: 0; }
-.form-label { font-size: 11px; color: #888; margin-bottom: 6px; display: block; font-weight: 500; text-transform: uppercase; letter-spacing: 0.04em; }
+.form-label { font-size: 11px; color: #888; margin-bottom: 1px; display: block; font-weight: 500; text-transform: uppercase; letter-spacing: 0.04em; }
+.form-label .th { display: block; font-size: 10.5px; color: #c2b89a; text-transform: none; letter-spacing: 0; font-weight: 400; margin: 1px 0 6px; }
 .num-input { width: 100%; border: 0.5px solid rgba(0,0,0,0.12); border-radius: 10px; padding: 11px 12px; font-size: 17px; font-weight: 600; background: #fff; color: #111; outline: none; font-family: inherit; }
 .num-input:focus { border-color: #378ADD; }
 .two-col { display: grid; grid-template-columns: 1fr 1fr; gap: 10px; }
 .three-col { display: grid; grid-template-columns: 1fr 1fr 1fr; gap: 10px; }
 .notes-input { width: 100%; border: 0.5px solid rgba(0,0,0,0.12); border-radius: 10px; padding: 10px 12px; font-size: 14px; background: #fff; color: #111; outline: none; font-family: inherit; resize: none; }
 .calc-row { display: flex; justify-content: space-between; align-items: center; background: #f0efe8; border-radius: 10px; padding: 10px 13px; margin-top: 10px; font-size: 13px; color: #555; }
+.calc-row .th { display: block; font-size: 10.5px; color: #b0a688; }
 .calc-val { font-size: 16px; font-weight: 700; color: #111; }
-.submit-btn { width: 100%; padding: 15px; background: #111; color: #fff; border: none; border-radius: 14px; font-size: 15px; font-weight: 600; cursor: pointer; font-family: inherit; margin-top: 6px; display: flex; align-items: center; justify-content: center; gap: 7px; }
+.submit-btn { width: 100%; padding: 15px; background: #111; color: #fff; border: none; border-radius: 14px; font-size: 15px; font-weight: 600; cursor: pointer; font-family: inherit; margin-top: 6px; display: flex; flex-direction: column; align-items: center; justify-content: center; gap: 2px; }
+.submit-btn .row { display: flex; align-items: center; gap: 7px; }
+.submit-btn .th { font-size: 11px; font-weight: 400; color: rgba(255,255,255,0.6); }
 .submit-btn:active { opacity: 0.8; transform: scale(0.99); }
 .toast { position: fixed; bottom: 24px; left: 50%; transform: translateX(-50%); background: #111; color: #fff; padding: 11px 22px; border-radius: 20px; font-size: 13px; opacity: 0; transition: opacity 0.3s; pointer-events: none; z-index: 100; max-width: 90%; text-align: center; }
 .toast.show { opacity: 1; }
@@ -53,78 +64,89 @@ body { font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif; b
 <div class="app">
 <div class="nav-header">
 <h1><i class="ti ti-clipboard-check" style="color:#EF9F27"></i>Max KPI</h1>
-<p>Bite Me! Pattaya — еженедельный отчёт</p>
+<p>Bite Me! Pattaya — Weekly Report</p>
+<p class="th">รายงานประจำสัปดาห์ ไบท์มี พัทยา</p>
 </div>
 
 <div class="content">
 
-<div class="hint"><i class="ti ti-info-circle"></i> Заполняй каждую пятницу вечером. Выбери неделю, отметь выполненное, впиши цифры и нажми «Отправить отчёт» внизу.</div>
+<div class="hint">
+<i class="ti ti-info-circle"></i> Fill this in every Friday evening. Pick your week, check off what's done, enter the numbers, then tap Submit Report below.
+<span class="th">กรอกทุกวันศุกร์ตอนเย็น เลือกสัปดาห์ ติ๊กสิ่งที่ทำเสร็จ ใส่ตัวเลข แล้วกดส่งรายงานด้านล่าง</span>
+</div>
 
-<div class="section-label">Неделя</div>
+<div class="section-label">WEEK <span class="th">สัปดาห์</span></div>
 <div class="week-wrap" id="week-wrap"></div>
 <div class="week-desc" id="week-desc"></div>
 
 <div class="form-card">
-<h3><i class="ti ti-checklist" style="color:#1D9E75"></i>Онбординг — чек-лист недели</h3>
+<h3><i class="ti ti-checklist" style="color:#1D9E75"></i>Onboarding — Weekly Checklist</h3>
+<div class="th-sub">ออนบอร์ด เช็คลิสต์รายสัปดาห์</div>
 <div id="milestone-list"></div>
 </div>
 
 <div class="form-card">
-<h3><i class="ti ti-cash-register" style="color:#378ADD"></i>Операции (эта неделя)</h3>
+<h3><i class="ti ti-cash-register" style="color:#378ADD"></i>Operations (this week)</h3>
+<div class="th-sub">การปฏิบัติงาน (สัปดาห์นี้)</div>
 <div class="two-col">
 <div class="form-row">
-<span class="form-label">POS отчётов</span>
+<span class="form-label">POS Reports<span class="th">รายงาน POS</span></span>
 <input class="num-input" id="pos-reports" type="number" inputmode="numeric" placeholder="0" min="0">
 </div>
 <div class="form-row">
-<span class="form-label">Инвентаризаций</span>
+<span class="form-label">Inventory Counts<span class="th">การตรวจนับสต็อก</span></span>
 <input class="num-input" id="inventory" type="number" inputmode="numeric" placeholder="0" min="0">
 </div>
 </div>
 <div class="form-row">
-<span class="form-label">Проблем зафиксировано</span>
+<span class="form-label">Issues Logged<span class="th">ปัญหาที่พบ</span></span>
 <input class="num-input" id="issues" type="number" inputmode="numeric" placeholder="0" min="0">
 </div>
 <div class="form-row">
-<span class="form-label">Заметка (необязательно)</span>
-<textarea class="notes-input" id="ops-notes" rows="2" placeholder="Что случилось, если были проблемы..."></textarea>
+<span class="form-label">Notes (optional)<span class="th">หมายเหตุ (ถ้ามี)</span></span>
+<textarea class="notes-input" id="ops-notes" rows="2" placeholder="What happened, if there were issues..."></textarea>
 </div>
 </div>
 
 <div class="form-card">
-<h3><i class="ti ti-moped" style="color:#EF9F27"></i>LINE MAN (эта неделя)</h3>
+<h3><i class="ti ti-moped" style="color:#EF9F27"></i>LINE MAN (this week)</h3>
+<div class="th-sub">LINE MAN (สัปดาห์นี้)</div>
 <div class="two-col">
 <div class="form-row">
-<span class="form-label">Заказов получено</span>
+<span class="form-label">Orders Received<span class="th">ออเดอร์ที่ได้รับ</span></span>
 <input class="num-input" id="orders-received" type="number" inputmode="numeric" placeholder="0" min="0" oninput="calcCompletion()">
 </div>
 <div class="form-row">
-<span class="form-label">Заказов выполнено</span>
+<span class="form-label">Orders Completed<span class="th">ออเดอร์ที่ทำเสร็จ</span></span>
 <input class="num-input" id="orders-completed" type="number" inputmode="numeric" placeholder="0" min="0" oninput="calcCompletion()">
 </div>
 </div>
-<div class="calc-row"><span>Completion rate</span><span class="calc-val" id="completion-rate">—</span></div>
+<div class="calc-row"><span>Completion rate<span class="th">อัตราความสำเร็จ</span></span><span class="calc-val" id="completion-rate">—</span></div>
 </div>
 
 <div class="form-card">
-<h3><i class="ti ti-speakerphone" style="color:#7F77DD"></i>Маркетинг (всего с начала)</h3>
+<h3><i class="ti ti-speakerphone" style="color:#7F77DD"></i>Marketing (total so far)</h3>
+<div class="th-sub">การตลาด (รวมทั้งหมด)</div>
 <div class="three-col">
 <div class="form-row">
-<span class="form-label">Сообщений</span>
+<span class="form-label">Messages<span class="th">ข้อความ</span></span>
 <input class="num-input" id="mkt-messages" type="number" inputmode="numeric" placeholder="0" min="0">
 </div>
 <div class="form-row">
-<span class="form-label">Дизайн</span>
+<span class="form-label">Design<span class="th">ดีไซน์</span></span>
 <input class="num-input" id="mkt-design" type="number" inputmode="numeric" placeholder="0" min="0">
 </div>
 <div class="form-row">
-<span class="form-label">Постов</span>
+<span class="form-label">Posts<span class="th">โพสต์</span></span>
 <input class="num-input" id="mkt-posts" type="number" inputmode="numeric" placeholder="0" min="0">
 </div>
 </div>
 </div>
 
-<button class="submit-btn" onclick="submitReport()"><i class="ti ti-send"></i>Отправить отчёт</button>
+<button class="submit-btn" onclick="submitReport()">
+<span class="row"><i class="ti ti-send"></i>Submit Report</span>
+<span class="th">ส่งรายงาน</span>
+</button>
 
 </div>
 </div>
@@ -133,35 +155,35 @@ body { font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif; b
 
 <script>
 const weeks = [
-{ n: 1, range: '7–11 Jul', topic: 'POS и базовые операции', milestones: [
-'Освоил кассу / POS систему',
-'Знает меню и цены наизусть',
-'Умеет открывать и закрывать смену',
-'Провёл первый самостоятельный день'
+{ n: 1, range: 'Jul 7–11', topic: 'POS & Basic Operations', topicTh: 'POS และการปฏิบัติงานพื้นฐาน', milestones: [
+['Learned the POS / cash register', 'ใช้เครื่อง POS เป็น'],
+['Knows the menu and prices by heart', 'จำเมนูและราคาได้'],
+['Can open and close a shift', 'เปิด-ปิดกะได้'],
+['Completed first solo shift', 'ทำกะคนเดียวครั้งแรกสำเร็จ']
 ]},
-{ n: 2, range: '14–18 Jul', topic: 'Инвентаризация и процессы', milestones: [
-'Провёл первую полную инвентаризацию',
-'Знает процесс заказа продуктов у поставщиков',
-'Понимает расчёт food cost',
-'Ведёт учёт списаний/порчи'
+{ n: 2, range: 'Jul 14–18', topic: 'Inventory & Processes', topicTh: 'การตรวจนับสต็อกและกระบวนการ', milestones: [
+['Completed first full inventory count', 'ตรวจนับสต็อกครั้งแรกเสร็จ'],
+['Knows the supplier ordering process', 'รู้ขั้นตอนสั่งของจากซัพพลายเออร์'],
+['Understands food cost calculation', 'เข้าใจการคำนวณต้นทุนอาหาร'],
+['Tracks waste / spoilage', 'บันทึกของเสีย/ของหมดอายุ']
 ]},
-{ n: 3, range: '21–25 Jul', topic: 'LINE MAN и доставка', milestones: [
-'Настроил и разобрался в LINE MAN аккаунте',
-'Принял и обработал первый заказ',
-'Достиг 20+ заказов за неделю',
-'Знает процесс при проблемном заказе'
+{ n: 3, range: 'Jul 21–25', topic: 'LINE MAN & Delivery', topicTh: 'LINE MAN และการจัดส่ง', milestones: [
+['Set up and understands LINE MAN account', 'ตั้งค่าและเข้าใจบัญชี LINE MAN'],
+['Handled first order', 'รับออเดอร์แรกสำเร็จ'],
+['Reached 20+ orders this week', 'ทำออเดอร์ได้ 20+ ในสัปดาห์นี้'],
+['Knows the process for order issues', 'รู้ขั้นตอนเมื่อออเดอร์มีปัญหา']
 ]},
-{ n: 4, range: '28 Jul – 1 Aug', topic: 'Маркетинг и группы', milestones: [
-'Публикует в Instagram / Facebook',
-'Отвечает клиентам в чатах и группах',
-'Согласовывает дизайн постов',
-'Собрал минимум 3 отзыва от клиентов'
+{ n: 4, range: 'Jul 28 – Aug 1', topic: 'Marketing & Groups', topicTh: 'การตลาดและกลุ่มลูกค้า', milestones: [
+['Posting on Instagram / Facebook', 'โพสต์ Instagram/Facebook'],
+['Responding to customers in chats/groups', 'ตอบลูกค้าในแชท/กลุ่ม'],
+['Approving post designs', 'อนุมัติดีไซน์โพสต์'],
+['Collected at least 3 customer reviews', 'เก็บรีวิวลูกค้าอย่างน้อย 3 รีวิว']
 ]},
-{ n: 5, range: '4–8 Aug', topic: 'POS Day и автономия', milestones: [
-'Полностью самостоятельно ведёт смену',
-'Провёл POS Day без ошибок',
-'Финальная оценка онбординга пройдена',
-'Готов к работе без сопровождения'
+{ n: 5, range: 'Aug 4–8', topic: 'POS Day & Independence', topicTh: 'POS Day และการทำงานอิสระ', milestones: [
+['Runs a shift fully independently', 'ทำกะได้เองทั้งหมด'],
+['Completed POS Day with no errors', 'ทำ POS Day โดยไม่มีข้อผิดพลาด'],
+['Passed final onboarding review', 'ผ่านการประเมินออนบอร์ดครั้งสุดท้าย'],
+['Ready to work without supervision', 'พร้อมทำงานโดยไม่ต้องมีคนดูแล']
 ]}
 ];
 
@@ -170,9 +192,9 @@ let doneMilestones = {};
 
 function renderWeeks() {
 const wrap = document.getElementById('week-wrap');
-wrap.innerHTML = weeks.map(w => `<button class="week-btn ${w.n===selectedWeek?'sel':''}" onclick="selectWeek(${w.n})">Неделя ${w.n}</button>`).join('');
+wrap.innerHTML = weeks.map(w => `<button class="week-btn ${w.n===selectedWeek?'sel':''}" onclick="selectWeek(${w.n})">Week ${w.n}</button>`).join('');
 const w = weeks.find(w => w.n === selectedWeek);
-document.getElementById('week-desc').textContent = w.range + ' · ' + w.topic;
+document.getElementById('week-desc').innerHTML = w.range + ' · ' + w.topic + '<span class="th">' + w.topicTh + '</span>';
 }
 
 function selectWeek(n) {
@@ -189,7 +211,10 @@ list.innerHTML = w.milestones.map((m, i) => {
 const done = doneMilestones[selectedWeek][i];
 return `<div class="milestone ${done?'done':''}" onclick="toggleMilestone(${i})">
 <div class="milestone-check ${done?'done':''}">${done?'<i class="ti ti-check"></i>':''}</div>
-<div class="milestone-text">${m}</div>
+<div>
+<div class="milestone-text">${m[0]}</div>
+<div class="milestone-th">${m[1]}</div>
+</div>
 </div>`;
 }).join('');
 }
@@ -223,7 +248,7 @@ function submitReport() {
 const w = weeks.find(w => w.n === selectedWeek);
 const done = doneMilestones[selectedWeek] || [];
 const doneCount = done.filter(Boolean).length;
-const milestonesText = w.milestones.map((m, i) => (done[i] ? '✅ ' : '⬜ ') + m).join('\n');
+const milestonesText = w.milestones.map((m, i) => (done[i] ? '✅ ' : '⬜ ') + m[0]).join('\n');
 
 const pos = document.getElementById('pos-reports').value || '0';
 const inv = document.getElementById('inventory').value || '0';
@@ -246,7 +271,7 @@ text += '\n\n';
 text += 'LINE MAN: получено ' + rec + ', выполнено ' + comp + ', completion rate ' + rate + '\n\n';
 text += 'МАРКЕТИНГ (всего с начала): сообщений ' + msgs + ', дизайн-решений ' + design + ', постов ' + posts;
 
-showToast('Открываю Claude для сохранения...');
+showToast('Opening Claude to save... / กำลังเปิด Claude เพื่อบันทึก...');
 setTimeout(() => openCowork(text), 400);
 }
 
