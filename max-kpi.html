@@ -13,39 +13,37 @@
 * { box-sizing: border-box; margin: 0; padding: 0; -webkit-tap-highlight-color: transparent; }
 body { font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif; background: #f5f5f0; min-height: 100vh; }
 .app { max-width: 460px; margin: 0 auto; background: #f5f5f0; min-height: 100vh; display: flex; flex-direction: column; }
-.nav-header { background: #fff; padding: 18px 18px 14px; border-bottom: 0.5px solid rgba(0,0,0,0.1); position: sticky; top: 0; z-index: 10; }
-.nav-header h1 { font-size: 22px; font-weight: 600; color: #111; display: flex; align-items: center; gap: 8px; }
-.nav-header p { font-size: 13px; color: #888; margin-top: 3px; }
-.nav-header .th { font-size: 11px; color: #b7ab8e; margin-top: 1px; }
+.nav-header { background: #fff; padding: 16px 16px 0; border-bottom: 0.5px solid rgba(0,0,0,0.1); position: sticky; top: 0; z-index: 10; }
+.nav-header h1 { font-size: 20px; font-weight: 600; color: #111; display: flex; align-items: center; gap: 7px; }
+.nav-header p { font-size: 12px; color: #888; margin-top: 2px; }
+.nav-header .th { font-size: 10.5px; color: #b7ab8e; margin-top: 1px; }
+.week-wrap { display: flex; gap: 6px; overflow-x: auto; padding: 12px 0; margin-top: 4px; }
+.week-btn { flex-shrink: 0; font-size: 13px; padding: 8px 14px; border-radius: 20px; border: 0.5px solid rgba(0,0,0,0.1); background: #f5f5f0; color: #666; cursor: pointer; font-family: inherit; white-space: nowrap; font-weight: 600; }
+.week-btn.sel { border-color: #111; background: #111; color: #fff; }
 .content { flex: 1; padding: 14px; padding-bottom: 40px; }
-.hint { background: #FAEEDA; color: #854F0B; font-size: 12.5px; padding: 10px 13px; border-radius: 10px; margin-bottom: 14px; line-height: 1.4; }
-.hint .th { color: #a3792f; font-size: 11px; margin-top: 4px; display: block; }
-.section-label { font-size: 11px; font-weight: 600; color: #aaa; text-transform: uppercase; letter-spacing: 0.06em; margin: 16px 0 3px; }
-.section-label .th { text-transform: none; letter-spacing: 0; font-weight: 400; color: #c2b89a; font-size: 10.5px; margin-left: 6px; }
-.section-label:first-child { margin-top: 0; }
-.period-wrap { display: flex; gap: 6px; overflow-x: auto; padding-bottom: 2px; margin-top: 6px; }
-.period-btn { flex-shrink: 0; font-size: 12px; padding: 8px 12px; border-radius: 20px; border: 0.5px solid rgba(0,0,0,0.1); background: #fff; color: #555; cursor: pointer; font-family: inherit; white-space: nowrap; }
-.period-btn.sel { border-color: #378ADD; background: #E6F1FB; color: #185FA5; font-weight: 600; }
-.period-desc { font-size: 12px; color: #888; margin-top: 8px; }
-.period-desc .th { color: #b7ab8e; font-size: 11px; margin-top: 1px; }
+.phase-title { font-size: 15px; font-weight: 700; color: #111; margin-bottom: 1px; }
+.phase-title .th { display: inline; font-size: 12px; font-weight: 400; color: #b7ab8e; margin-left: 6px; }
+.phase-dates { font-size: 12px; color: #888; margin-bottom: 12px; }
+.progress-pill { display: inline-flex; align-items: center; gap: 5px; background: #E1F5EE; color: #0F6E56; font-size: 11px; font-weight: 700; padding: 3px 10px; border-radius: 20px; margin-bottom: 12px; }
 .form-card { background: #fff; border-radius: 16px; border: 0.5px solid rgba(0,0,0,0.08); padding: 16px; margin-bottom: 10px; }
-.form-card h3 { font-size: 15px; font-weight: 600; color: #111; display: flex; align-items: center; gap: 7px; }
-.form-card .th-sub { font-size: 11px; color: #b7ab8e; margin: 2px 0 12px 27px; }
-.group-label { font-size: 10.5px; font-weight: 700; color: #999; text-transform: uppercase; letter-spacing: 0.05em; margin: 14px 0 4px; }
-.group-label:first-child { margin-top: 0; }
-.group-label .th { text-transform: none; letter-spacing: 0; font-weight: 400; color: #c9c0a6; margin-left: 5px; }
-.milestone { display: flex; align-items: flex-start; gap: 10px; padding: 8px 0; border-bottom: 0.5px solid rgba(0,0,0,0.06); cursor: pointer; -webkit-user-select: none; }
+.form-card h3 { font-size: 15px; font-weight: 600; color: #111; display: flex; align-items: center; gap: 7px; margin-bottom: 2px; }
+.form-card .th-sub { font-size: 11px; color: #b7ab8e; margin: 0 0 12px 27px; }
+.milestone { display: flex; align-items: flex-start; gap: 10px; padding: 9px 0; border-bottom: 0.5px solid rgba(0,0,0,0.06); cursor: pointer; -webkit-user-select: none; }
 .milestone:last-child { border-bottom: none; }
-.milestone-check { width: 21px; height: 21px; border-radius: 6px; border: 1.5px solid #ddd; flex-shrink: 0; margin-top: 1px; display: flex; align-items: center; justify-content: center; transition: all .1s; }
+.milestone-check { width: 22px; height: 22px; border-radius: 7px; border: 1.5px solid #ddd; flex-shrink: 0; margin-top: 1px; display: flex; align-items: center; justify-content: center; transition: all .1s; }
 .milestone-check.done { background: #1D9E75; border-color: #1D9E75; }
-.milestone-check.done i { color: #fff; font-size: 14px; }
-.milestone-text { font-size: 13.5px; color: #111; line-height: 1.35; }
+.milestone-check.done i { color: #fff; font-size: 15px; }
+.milestone-text { font-size: 14px; color: #111; line-height: 1.4; }
 .milestone-date { font-size: 10.5px; color: #b0a688; margin-left: 5px; }
-.milestone-th { font-size: 11.5px; color: #b7ab8e; line-height: 1.3; margin-top: 2px; }
+.milestone-th { font-size: 12px; color: #b7ab8e; line-height: 1.3; margin-top: 2px; }
 .milestone-note { font-size: 11px; color: #999; margin-top: 3px; font-style: italic; line-height: 1.3; }
 .milestone-badge { display: inline-block; font-size: 9.5px; font-weight: 600; padding: 1px 6px; border-radius: 8px; background: #FAEEDA; color: #854F0B; margin-left: 6px; vertical-align: middle; }
 .milestone.done .milestone-text { color: #999; text-decoration: line-through; }
 .milestone.done .milestone-th { color: #ccc; }
+.empty-note { font-size: 13px; color: #999; padding: 6px 0; }
+.group-label { font-size: 10.5px; font-weight: 700; color: #999; text-transform: uppercase; letter-spacing: 0.05em; margin: 16px 0 8px; display: flex; align-items: center; gap: 6px; }
+.group-label:first-child { margin-top: 0; }
+.group-label .th { text-transform: none; letter-spacing: 0; font-weight: 400; color: #c9c0a6; }
 .form-row { margin-bottom: 13px; }
 .form-row:last-child { margin-bottom: 0; }
 .form-label { font-size: 11px; color: #888; margin-bottom: 1px; display: block; font-weight: 500; text-transform: uppercase; letter-spacing: 0.04em; }
@@ -62,10 +60,6 @@ body { font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif; b
 .yn-btn { flex: 1; font-size: 13px; padding: 10px; border-radius: 10px; border: 0.5px solid rgba(0,0,0,0.1); background: #fff; color: #555; cursor: pointer; text-align: center; font-family: inherit; font-weight: 600; }
 .yn-btn.sel-yes { border-color: #1D9E75; background: #E1F5EE; color: #0F6E56; }
 .yn-btn.sel-no { border-color: #E24B4A; background: #FCEBEB; color: #A32D2D; }
-.progress-card { background: #111; border-radius: 16px; padding: 14px 16px; margin-bottom: 12px; color: #fff; display: flex; align-items: center; justify-content: space-between; }
-.progress-card .num { font-size: 24px; font-weight: 700; }
-.progress-card .lbl { font-size: 11px; color: rgba(255,255,255,0.6); }
-.progress-card .th { font-size: 10px; color: rgba(255,255,255,0.4); }
 .submit-btn { width: 100%; padding: 15px; background: #111; color: #fff; border: none; border-radius: 14px; font-size: 15px; font-weight: 600; cursor: pointer; font-family: inherit; margin-top: 6px; display: flex; flex-direction: column; align-items: center; justify-content: center; gap: 2px; }
 .submit-btn .row { display: flex; align-items: center; gap: 7px; }
 .submit-btn .th { font-size: 11px; font-weight: 400; color: rgba(255,255,255,0.6); }
@@ -80,39 +74,27 @@ body { font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif; b
 <h1><i class="ti ti-clipboard-check" style="color:#EF9F27"></i>Max KPI</h1>
 <p>Worachai (Max) — Operations Manager · Bite Me! Pattaya</p>
 <p class="th">วรชัย (แม็กซ์) ผู้จัดการฝ่ายปฏิบัติงาน · ไบท์มี พัทยา</p>
+<div class="week-wrap" id="week-wrap"></div>
 </div>
 
 <div class="content">
 
-<div class="hint">
-<i class="ti ti-info-circle"></i> Check off milestones as you complete them. Pick the current period, fill in the weekly numbers, then tap Submit Report.
-<span class="th">ติ๊กงานที่ทำเสร็จ เลือกช่วงเวลาปัจจุบัน กรอกตัวเลขประจำสัปดาห์ แล้วกดส่งรายงาน</span>
-</div>
-
-<div class="progress-card">
-<div><div class="lbl">ONBOARDING PROGRESS</div><div class="th">ความคืบหน้าออนบอร์ด</div></div>
-<div class="num" id="progress-num">3 / 18</div>
-</div>
+<div class="phase-title" id="phase-title"></div>
+<div class="phase-dates" id="phase-dates"></div>
+<div class="progress-pill" id="progress-pill"></div>
 
 <div class="form-card">
-<h3><i class="ti ti-checklist" style="color:#1D9E75"></i>Onboarding Milestones</h3>
-<div class="th-sub">รายการงานออนบอร์ด</div>
+<h3><i class="ti ti-checklist" style="color:#1D9E75"></i>Checklist</h3>
+<div class="th-sub">รายการงาน</div>
 <div id="milestone-list"></div>
 </div>
 
-<div class="section-label">WEEK <span class="th">สัปดาห์</span></div>
-<div class="period-wrap" id="period-wrap"></div>
-<div class="period-desc" id="period-desc"></div>
-
 <div class="form-card">
-<h3><i class="ti ti-cash-register" style="color:#378ADD"></i>Operations</h3>
-<div class="th-sub">การปฏิบัติงาน</div>
-
+<div class="group-label"><i class="ti ti-cash-register" style="color:#378ADD"></i>Operations<span class="th">การปฏิบัติงาน</span></div>
 <div class="form-row">
 <span class="form-label">POS daily reports done (#)<span class="th">รายงาน POS รายวันที่ทำเสร็จ</span></span>
 <input class="num-input" id="pos-reports" type="number" inputmode="numeric" placeholder="0" min="0">
 </div>
-
 <div class="form-row">
 <span class="form-label">Inventory count completed (Y/N)<span class="th">ตรวจนับสต็อกเสร็จหรือไม่</span></span>
 <div class="yn-wrap">
@@ -120,21 +102,16 @@ body { font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif; b
 <button class="yn-btn" id="inv-no" onclick="setInv(false)">No / ไม่ใช่</button>
 </div>
 </div>
-
 <div class="form-row">
 <span class="form-label">Stock-outs flagged (#)<span class="th">จำนวนสินค้าหมดที่แจ้ง</span></span>
 <input class="num-input" id="stockouts" type="number" inputmode="numeric" placeholder="0" min="0">
 </div>
-
 <div class="form-row">
 <span class="form-label">Operational issues (brief)<span class="th">ปัญหาการปฏิบัติงาน (สั้นๆ)</span></span>
 <input class="text-input" id="ops-issues" type="text" placeholder="e.g. fridge issue, late delivery...">
 </div>
-</div>
 
-<div class="form-card">
-<h3><i class="ti ti-moped" style="color:#EF9F27"></i>LINE MAN / Delivery</h3>
-<div class="th-sub">LINE MAN / การจัดส่ง</div>
+<div class="group-label"><i class="ti ti-moped" style="color:#EF9F27"></i>LINE MAN / Delivery<span class="th">การจัดส่ง</span></div>
 <div class="two-col">
 <div class="form-row">
 <span class="form-label">Orders received (#)<span class="th">ออเดอร์ที่ได้รับ</span></span>
@@ -150,14 +127,11 @@ body { font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif; b
 <input class="num-input" id="complaints" type="number" inputmode="numeric" placeholder="0" min="0">
 </div>
 <div class="calc-row"><span>Completion rate (%)<span class="th">อัตราความสำเร็จ</span></span><span class="calc-val" id="completion-rate">—</span></div>
-</div>
 
-<div class="form-card">
-<h3><i class="ti ti-speakerphone" style="color:#7F77DD"></i>Marketing Group</h3>
-<div class="th-sub">กลุ่มการตลาด</div>
+<div class="group-label"><i class="ti ti-speakerphone" style="color:#7F77DD"></i>Marketing Group<span class="th">การตลาด</span></div>
 <div class="two-col">
 <div class="form-row">
-<span class="form-label">Messages responded to (#)<span class="th">ข้อความที่ตอบแล้ว</span></span>
+<span class="form-label">Messages responded (#)<span class="th">ข้อความที่ตอบแล้ว</span></span>
 <input class="num-input" id="mkt-messages" type="number" inputmode="numeric" placeholder="0" min="0">
 </div>
 <div class="form-row">
@@ -167,40 +141,33 @@ body { font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif; b
 </div>
 <div class="two-col">
 <div class="form-row">
-<span class="form-label">Design decisions logged (#)<span class="th">การตัดสินใจด้านดีไซน์</span></span>
+<span class="form-label">Design decisions (#)<span class="th">การตัดสินใจด้านดีไซน์</span></span>
 <input class="num-input" id="mkt-design" type="number" inputmode="numeric" placeholder="0" min="0">
 </div>
 <div class="form-row">
-<span class="form-label">Content posts coordinated (#)<span class="th">โพสต์ที่ประสานงานแล้ว</span></span>
+<span class="form-label">Posts coordinated (#)<span class="th">โพสต์ที่ประสานงานแล้ว</span></span>
 <input class="num-input" id="mkt-posts" type="number" inputmode="numeric" placeholder="0" min="0">
 </div>
 </div>
-</div>
 
-<div class="form-card">
-<h3><i class="ti ti-target-arrow" style="color:#1D9E75"></i>Onboarding (this week)</h3>
-<div class="th-sub">ออนบอร์ด (สัปดาห์นี้)</div>
+<div class="group-label"><i class="ti ti-language" style="color:#1D9E75"></i>Onboarding & English<span class="th">ออนบอร์ด & ภาษาอังกฤษ</span></div>
+<div class="two-col">
 <div class="form-row">
-<span class="form-label">Milestones completed this week (#)<span class="th">จำนวนงานที่ทำเสร็จสัปดาห์นี้</span></span>
+<span class="form-label">Milestones done this week (#)<span class="th">งานที่ทำเสร็จสัปดาห์นี้</span></span>
 <input class="num-input" id="milestones-week" type="number" inputmode="numeric" placeholder="0" min="0">
+</div>
+<div class="form-row">
+<span class="form-label">English sessions attended (#)<span class="th">เข้าคอร์สภาษาอังกฤษ</span></span>
+<input class="num-input" id="english-sessions" type="number" inputmode="numeric" placeholder="0" min="0">
+</div>
 </div>
 <div class="form-row">
 <span class="form-label">Blockers / Issues<span class="th">อุปสรรค/ปัญหา</span></span>
 <input class="text-input" id="blockers" type="text" placeholder="Anything blocking progress...">
 </div>
-<div class="form-row">
-<span class="form-label">English course sessions attended (#)<span class="th">จำนวนครั้งที่เข้าคอร์สภาษาอังกฤษ</span></span>
-<input class="num-input" id="english-sessions" type="number" inputmode="numeric" placeholder="0" min="0">
-</div>
-</div>
 
-<div class="form-card">
-<h3><i class="ti ti-note" style="color:#888"></i>Notes</h3>
-<div class="th-sub">หมายเหตุ</div>
-<div class="form-row">
-<span class="form-label">General notes / Owner feedback<span class="th">หมายเหตุทั่วไป/ความเห็นจากเจ้าของ</span></span>
-<textarea class="notes-input" id="general-notes" rows="3" placeholder="Anything else worth noting..."></textarea>
-</div>
+<div class="group-label"><i class="ti ti-note" style="color:#888"></i>Notes<span class="th">หมายเหตุ</span></div>
+<textarea class="notes-input" id="general-notes" rows="2" placeholder="General notes / owner feedback..."></textarea>
 </div>
 
 <button class="submit-btn" onclick="submitReport()">
@@ -215,63 +182,76 @@ body { font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif; b
 
 <script>
 const milestoneGroups = [
-{ label: 'WEEK 1 — IMMERSION (Jul 8–12)', th: 'สัปดาห์ที่ 1 — การเรียนรู้งาน (8–12 ก.ค.)', items: [
+{ label: 'WEEK 1 — IMMERSION', th: 'สัปดาห์ที่ 1 — การเรียนรู้งาน', items: [
 { en: 'Walk-through of the Dark Kitchen: equipment status, storage layout, current inventory', th: 'เดินสำรวจครัวกลาง (Dark Kitchen): สภาพอุปกรณ์ ผังพื้นที่จัดเก็บ สต็อกปัจจุบัน', date: 'Jul 8', status: 'done' },
 { en: 'Menu deep-dive: taste all dishes, document ingredients, cooking times, and portion standards', th: 'ศึกษาเมนูเชิงลึก: ชิมทุกจาน บันทึกส่วนผสม เวลาปรุง และมาตรฐานปริมาณ', date: 'Jul 9–10', status: 'pending' },
 { en: 'Join the marketing group as observer and Thai-language liaison for local feedback', th: 'เข้าร่วมกลุ่มการตลาดในฐานะผู้สังเกตการณ์และล่ามภาษาไทยเพื่อรับฟีดแบ็กจากลูกค้าท้องถิ่น', date: 'Jul 8', status: 'done' },
 { en: 'Complete full inventory count and submit written stock list to owner', th: 'ตรวจนับสต็อกทั้งหมด ส่งรายการเป็นลายลักษณ์อักษรให้เจ้าของ', date: 'Jul 12', status: 'pending' }
 ]},
-{ label: 'POS INSTALLATION DAY (Jul 13)', th: 'วันติดตั้งระบบ POS (13 ก.ค.)', items: [
+{ label: 'POS INSTALLATION DAY', th: 'วันติดตั้งระบบ POS', items: [
 { en: 'Present during Wongnai POS terminal setup', th: 'อยู่ร่วมระหว่างติดตั้งเครื่อง POS ของ Wongnai', date: 'Jul 13', status: 'pending' },
 { en: 'Complete technician-led training: transactions, shift close, daily reports', th: 'อบรมกับช่างเทคนิค: การทำรายการ ปิดกะ รายงานประจำวัน', date: 'Jul 13', status: 'pending' },
 { en: 'Run test transactions and confirm end-of-day report procedure is understood', th: 'ทดสอบทำรายการและยืนยันว่าเข้าใจขั้นตอนรายงานสิ้นวัน', date: 'Jul 13', status: 'pending' }
 ]},
-{ label: 'WEEK 3 — LINE MAN CONTENT (Jul 14–20)', th: 'สัปดาห์ที่ 3 — เนื้อหา LINE MAN (14–20 ก.ค.)', items: [
+{ label: 'WEEK 3 — LINE MAN CONTENT', th: 'สัปดาห์ที่ 3 — เนื้อหา LINE MAN', items: [
 { en: 'Final menu tasting with Mr. Noom: confirm all items, finalize dish names and descriptions', th: 'ชิมเมนูรอบสุดท้ายกับ Mr. Noom: ยืนยันรายการ สรุปชื่อจานและคำอธิบาย', date: 'Jul 14–15', status: 'pending' },
 { en: 'Coordinate dish photo shoot for all menu items', th: 'ประสานงานถ่ายภาพอาหารทุกเมนู', date: 'Jul 16–18', status: 'pending' },
 { en: 'Register & configure Bite Me! store on LINE MAN Wongnai', th: 'ลงทะเบียนและตั้งค่าร้าน Bite Me! บน LINE MAN Wongnai', date: 'Jul 16–17', status: 'pending' },
 { en: 'Upload full menu: photos, prices, descriptions (Thai + English)', th: 'อัปโหลดเมนูทั้งหมด: รูปภาพ ราคา คำอธิบาย (ไทย+อังกฤษ)', date: 'Jul 18–19', status: 'pending' },
 { en: 'Place and fulfill one test order end-to-end', th: 'สั่งและทำออเดอร์ทดสอบให้ครบขั้นตอน', date: 'Jul 20', status: 'pending' }
 ]},
-{ label: 'WEEKS 4-5 — LAUNCH PREP (Jul 21–31)', th: 'สัปดาห์ที่ 4-5 — เตรียมเปิดตัว (21–31 ก.ค.)', items: [
+{ label: 'WEEKS 4-5 — LAUNCH PREP', th: 'สัปดาห์ที่ 4-5 — เตรียมเปิดตัว', items: [
 { en: 'Draft simple SOPs: opening/closing checklist, order flow, inventory tracking', th: 'ร่าง SOP อย่างง่าย: เช็คลิสต์เปิด-ปิดร้าน ขั้นตอนออเดอร์ การติดตามสต็อก', date: 'Jul 21–23', status: 'pending' },
 { en: 'Build initial purchase list for first week of truck operations', th: 'จัดทำรายการซื้อของเบื้องต้นสำหรับสัปดาห์แรก', date: 'Jul 22', status: 'pending' },
 { en: 'Accompany owner to supplier meetings and partner negotiations as interpreter', th: 'ร่วมเดินทางไปพบซัพพลายเออร์และเจรจาพาร์ทเนอร์กับเจ้าของในฐานะล่าม', date: 'TBD', status: 'done', note: 'Jul 10: Site inspection at 4 locations with owner (Laem Bali Hai, View Talay Condo 3, Fifth Pattaya Jomtien, Jomtien Beach). Most promising: OM Hotels (Fifth Pattaya Jomtien).' },
 { en: 'Final readiness check: inventory, POS, LINE MAN, full menu photos complete', th: 'ตรวจสอบความพร้อมครั้งสุดท้าย: สต็อก POS LINE MAN รูปภาพเมนูครบถ้วน', date: 'Jul 31', status: 'pending' }
 ]},
-{ label: 'THROUGHOUT — ENGLISH COURSE (2 weeks, TBD)', th: 'ตลอดโครงการ — คอร์สภาษาอังกฤษ (2 สัปดาห์ กำหนดภายหลัง)', items: [
+{ label: 'ONGOING — ENGLISH COURSE & DUTIES', th: 'ต่อเนื่อง — คอร์สภาษาอังกฤษและหน้าที่ประจำ', items: [
 { en: 'Complete English course: customer service phrases, food & menu vocabulary, POS & delivery platform terms, complaint handling', th: 'เรียนคอร์สภาษาอังกฤษ: วลีบริการลูกค้า คำศัพท์อาหาร/เมนู คำศัพท์ POS และแพลตฟอร์มส่งอาหาร การรับมือข้อร้องเรียน', date: 'TBD', status: 'pending', note: 'Mandatory, alongside the full team.' },
 { en: 'Support teammates during practice sessions (Max\'s existing English is an asset here)', th: 'ช่วยเพื่อนร่วมทีมระหว่างฝึกซ้อม (จุดแข็งด้านภาษาอังกฤษของแม็กซ์)', date: 'Ongoing', status: 'in_progress' },
-{ en: 'Ongoing duty: monitor & respond to marketing group messages, log design/brand decisions', th: 'หน้าที่ต่อเนื่อง: ติดตามและตอบข้อความกลุ่มการตลาด บันทึกการตัดสินใจด้านดีไซน์/แบรนด์', date: 'Ongoing', status: 'in_progress', note: 'Tracked weekly via the Marketing Group numbers below.' }
+{ en: 'Ongoing duty: monitor & respond to marketing group messages, log design/brand decisions', th: 'หน้าที่ต่อเนื่อง: ติดตามและตอบข้อความกลุ่มการตลาด บันทึกการตัดสินใจด้านดีไซน์/แบรนด์', date: 'Ongoing', status: 'in_progress', note: 'Tracked weekly via the Marketing Group numbers above.' }
 ]}
 ];
 
-const periods = [
-{ key: 'Jul 8-12', label: 'Week 1', dates: 'Jul 8–12', th: 'สัปดาห์ 1', thDates: '8–12 ก.ค.' },
-{ key: 'Jul 13', label: 'Week 2', dates: 'Jul 13', th: 'สัปดาห์ 2', thDates: '13 ก.ค.' },
-{ key: 'Jul 14-20', label: 'Week 3', dates: 'Jul 14–20', th: 'สัปดาห์ 3', thDates: '14–20 ก.ค.' },
-{ key: 'Jul 21-25', label: 'Week 4', dates: 'Jul 21–25', th: 'สัปดาห์ 4', thDates: '21–25 ก.ค.' },
-{ key: 'Jul 26-31', label: 'Week 5', dates: 'Jul 26–31', th: 'สัปดาห์ 5', thDates: '26–31 ก.ค.' },
-{ key: 'Aug W1', label: 'Week 6', dates: 'Aug W1', th: 'สัปดาห์ 6', thDates: 'ส.ค. สัปดาห์ 1' },
-{ key: 'Aug W2', label: 'Week 7', dates: 'Aug W2', th: 'สัปดาห์ 7', thDates: 'ส.ค. สัปดาห์ 2' },
-{ key: 'Aug W3', label: 'Week 8', dates: 'Aug W3', th: 'สัปดาห์ 8', thDates: 'ส.ค. สัปดาห์ 3' }
+const weeks = [
+{ key: 'Jul 8-12', label: 'Week 1', dates: 'Jul 8–12', thDates: '8–12 ก.ค.', group: 0 },
+{ key: 'Jul 13', label: 'Week 2', dates: 'Jul 13', thDates: '13 ก.ค.', group: 1 },
+{ key: 'Jul 14-20', label: 'Week 3', dates: 'Jul 14–20', thDates: '14–20 ก.ค.', group: 2 },
+{ key: 'Jul 21-25', label: 'Week 4', dates: 'Jul 21–25', thDates: '21–25 ก.ค.', group: 3 },
+{ key: 'Jul 26-31', label: 'Week 5', dates: 'Jul 26–31', thDates: '26–31 ก.ค.', group: 3 },
+{ key: 'Aug W1', label: 'Week 6', dates: 'Aug, week 1', thDates: 'ส.ค. สัปดาห์ 1', group: 4 },
+{ key: 'Aug W2', label: 'Week 7', dates: 'Aug, week 2', thDates: 'ส.ค. สัปดาห์ 2', group: 4 },
+{ key: 'Aug W3', label: 'Week 8', dates: 'Aug, week 3', thDates: 'ส.ค. สัปดาห์ 3', group: 4 }
 ];
 
-let selectedPeriod = periods[0].key;
+let selectedWeekIdx = 0;
 let doneState = {};
 milestoneGroups.forEach((g, gi) => g.items.forEach((m, mi) => {
 doneState[gi + '-' + mi] = m.status === 'done';
 }));
 
+function renderWeeks() {
+const wrap = document.getElementById('week-wrap');
+wrap.innerHTML = weeks.map((w, i) => `<button class="week-btn ${i===selectedWeekIdx?'sel':''}" onclick="selectWeek(${i})">${w.label}</button>`).join('');
+}
+
+function selectWeek(i) {
+selectedWeekIdx = i;
+renderWeeks();
+renderMilestones();
+}
+
 function renderMilestones() {
+const w = weeks[selectedWeekIdx];
+const g = milestoneGroups[w.group];
+document.getElementById('phase-title').innerHTML = g.label + '<span class="th">' + g.th + '</span>';
+document.getElementById('phase-dates').textContent = w.dates;
+
 const list = document.getElementById('milestone-list');
 let html = '';
-let doneCount = 0, total = 0;
-milestoneGroups.forEach((g, gi) => {
-html += `<div class="group-label">${g.label}<span class="th">${g.th}</span></div>`;
+let doneCount = 0;
 g.items.forEach((m, mi) => {
-total++;
-const key = gi + '-' + mi;
+const key = w.group + '-' + mi;
 const done = doneState[key];
 if (done) doneCount++;
 const badge = m.status === 'in_progress' && !done ? '<span class="milestone-badge">In progress</span>' : '';
@@ -285,26 +265,13 @@ ${note}
 </div>
 </div>`;
 });
-});
-list.innerHTML = html;
-document.getElementById('progress-num').textContent = doneCount + ' / ' + total;
+list.innerHTML = html || '<div class="empty-note">Nothing scheduled here.</div>';
+document.getElementById('progress-pill').innerHTML = '<i class="ti ti-check"></i> ' + doneCount + ' / ' + g.items.length + ' done this phase';
 }
 
 function toggleMilestone(key) {
 doneState[key] = !doneState[key];
 renderMilestones();
-}
-
-function renderPeriods() {
-const wrap = document.getElementById('period-wrap');
-wrap.innerHTML = periods.map(p => `<button class="period-btn ${p.key===selectedPeriod?'sel':''}" onclick="selectPeriod('${p.key}')">${p.label}</button>`).join('');
-const p = periods.find(p => p.key === selectedPeriod);
-document.getElementById('period-desc').innerHTML = p.dates + '<span class="th">' + p.thDates + '</span>';
-}
-
-function selectPeriod(key) {
-selectedPeriod = key;
-renderPeriods();
 }
 
 let invCompleted = null;
@@ -335,16 +302,13 @@ window.open(url, '_blank');
 }
 
 function submitReport() {
-const p = periods.find(p => p.key === selectedPeriod);
+const w = weeks[selectedWeekIdx];
+const g = milestoneGroups[w.group];
 
 let milestonesText = '';
-milestoneGroups.forEach((g, gi) => {
-milestonesText += g.label + ':\n';
 g.items.forEach((m, mi) => {
-const key = gi + '-' + mi;
-const done = doneState[key];
-milestonesText += (done ? '✅ ' : '⬜ ') + m.en + '\n';
-});
+const key = w.group + '-' + mi;
+milestonesText += (doneState[key] ? '✅ ' : '⬜ ') + m.en + '\n';
 });
 
 const pos = document.getElementById('pos-reports').value || '0';
@@ -368,20 +332,20 @@ const engSessions = document.getElementById('english-sessions').value || '0';
 
 const genNotes = document.getElementById('general-notes').value.trim();
 
-let text = 'Обнови Max KPI Tracker (Google Sheet) в столбце "' + p.dates + '" (' + p.label + ') вкладки Weekly KPI Log:\n\n';
+let text = 'Обнови Max KPI Tracker (Google Sheet) в столбце "' + w.dates + '" (' + w.label + ') вкладки Weekly KPI Log:\n\n';
 text += 'OPERATIONS:\nPOS daily reports done (#): ' + pos + '\nInventory count completed (Y/N): ' + inv + '\nStock-outs flagged (#): ' + stockouts + '\nOperational issues (brief): ' + (opsIssues || '—') + '\n\n';
 text += 'LINE MAN / DELIVERY:\nOrders received (#): ' + rec + '\nOrders completed (#): ' + comp + '\nCompletion rate (%): ' + rate + '\nComplaints received (#): ' + complaints + '\n\n';
 text += 'MARKETING GROUP:\nMessages responded to (#): ' + msgs + '\nResponse rate (%): ' + respRate + '\nDesign decisions logged (#): ' + design + '\nContent posts coordinated (#): ' + posts + '\n\n';
 text += 'ONBOARDING MILESTONES (weekly row):\nMilestones completed this week (#): ' + msWeek + '\nBlockers / Issues: ' + (blockers || '—') + '\nEnglish course sessions attended: ' + engSessions + '\n\n';
 text += 'NOTES:\nGeneral notes / Owner feedback: ' + (genNotes || '—') + '\n\n';
-text += 'Также обнови вкладку Onboarding Milestones — статус Done/Yes по отмеченным пунктам:\n' + milestonesText;
+text += 'Также обнови вкладку Onboarding Milestones — статус Done/Yes для группы "' + g.label + '":\n' + milestonesText;
 
 showToast('Opening Claude to save... / กำลังเปิด Claude เพื่อบันทึก...');
 setTimeout(() => openCowork(text), 400);
 }
 
+renderWeeks();
 renderMilestones();
-renderPeriods();
 </script>
 </body>
 </html>
