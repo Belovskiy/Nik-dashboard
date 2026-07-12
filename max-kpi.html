@@ -1,0 +1,257 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-status-bar-style" content="default">
+<meta name="apple-mobile-web-app-title" content="Max KPI">
+<meta name="theme-color" content="#ffffff">
+<title>Max KPI — Bite Me!</title>
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@tabler/icons-webfont@3.19.0/dist/tabler-icons.min.css">
+<style>
+* { box-sizing: border-box; margin: 0; padding: 0; -webkit-tap-highlight-color: transparent; }
+body { font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif; background: #f5f5f0; min-height: 100vh; }
+.app { max-width: 460px; margin: 0 auto; background: #f5f5f0; min-height: 100vh; display: flex; flex-direction: column; }
+.nav-header { background: #fff; padding: 18px 18px 14px; border-bottom: 0.5px solid rgba(0,0,0,0.1); position: sticky; top: 0; z-index: 10; }
+.nav-header h1 { font-size: 22px; font-weight: 600; color: #111; display: flex; align-items: center; gap: 8px; }
+.nav-header p { font-size: 13px; color: #888; margin-top: 3px; }
+.content { flex: 1; padding: 14px; padding-bottom: 40px; }
+.hint { background: #FAEEDA; color: #854F0B; font-size: 12.5px; padding: 10px 13px; border-radius: 10px; margin-bottom: 14px; line-height: 1.4; }
+.section-label { font-size: 11px; font-weight: 600; color: #aaa; text-transform: uppercase; letter-spacing: 0.06em; margin: 16px 0 7px; }
+.section-label:first-child { margin-top: 0; }
+.week-wrap { display: flex; gap: 6px; overflow-x: auto; padding-bottom: 2px; }
+.week-btn { flex-shrink: 0; font-size: 12px; padding: 8px 12px; border-radius: 20px; border: 0.5px solid rgba(0,0,0,0.1); background: #fff; color: #555; cursor: pointer; font-family: inherit; white-space: nowrap; }
+.week-btn.sel { border-color: #378ADD; background: #E6F1FB; color: #185FA5; font-weight: 600; }
+.week-desc { font-size: 12px; color: #888; margin-top: 8px; }
+.form-card { background: #fff; border-radius: 16px; border: 0.5px solid rgba(0,0,0,0.08); padding: 16px; margin-bottom: 10px; }
+.form-card h3 { font-size: 15px; font-weight: 600; color: #111; margin-bottom: 12px; display: flex; align-items: center; gap: 7px; }
+.milestone { display: flex; align-items: flex-start; gap: 10px; padding: 9px 0; border-bottom: 0.5px solid rgba(0,0,0,0.06); cursor: pointer; -webkit-user-select: none; }
+.milestone:last-child { border-bottom: none; }
+.milestone-check { width: 21px; height: 21px; border-radius: 6px; border: 1.5px solid #ddd; flex-shrink: 0; margin-top: 1px; display: flex; align-items: center; justify-content: center; transition: all .1s; }
+.milestone-check.done { background: #1D9E75; border-color: #1D9E75; }
+.milestone-check.done i { color: #fff; font-size: 14px; }
+.milestone-text { font-size: 14px; color: #111; line-height: 1.4; padding-top: 1px; }
+.milestone.done .milestone-text { color: #999; text-decoration: line-through; }
+.form-row { margin-bottom: 13px; }
+.form-row:last-child { margin-bottom: 0; }
+.form-label { font-size: 11px; color: #888; margin-bottom: 6px; display: block; font-weight: 500; text-transform: uppercase; letter-spacing: 0.04em; }
+.num-input { width: 100%; border: 0.5px solid rgba(0,0,0,0.12); border-radius: 10px; padding: 11px 12px; font-size: 17px; font-weight: 600; background: #fff; color: #111; outline: none; font-family: inherit; }
+.num-input:focus { border-color: #378ADD; }
+.two-col { display: grid; grid-template-columns: 1fr 1fr; gap: 10px; }
+.three-col { display: grid; grid-template-columns: 1fr 1fr 1fr; gap: 10px; }
+.notes-input { width: 100%; border: 0.5px solid rgba(0,0,0,0.12); border-radius: 10px; padding: 10px 12px; font-size: 14px; background: #fff; color: #111; outline: none; font-family: inherit; resize: none; }
+.calc-row { display: flex; justify-content: space-between; align-items: center; background: #f0efe8; border-radius: 10px; padding: 10px 13px; margin-top: 10px; font-size: 13px; color: #555; }
+.calc-val { font-size: 16px; font-weight: 700; color: #111; }
+.submit-btn { width: 100%; padding: 15px; background: #111; color: #fff; border: none; border-radius: 14px; font-size: 15px; font-weight: 600; cursor: pointer; font-family: inherit; margin-top: 6px; display: flex; align-items: center; justify-content: center; gap: 7px; }
+.submit-btn:active { opacity: 0.8; transform: scale(0.99); }
+.toast { position: fixed; bottom: 24px; left: 50%; transform: translateX(-50%); background: #111; color: #fff; padding: 11px 22px; border-radius: 20px; font-size: 13px; opacity: 0; transition: opacity 0.3s; pointer-events: none; z-index: 100; max-width: 90%; text-align: center; }
+.toast.show { opacity: 1; }
+</style>
+</head>
+<body>
+<div class="app">
+<div class="nav-header">
+<h1><i class="ti ti-clipboard-check" style="color:#EF9F27"></i>Max KPI</h1>
+<p>Bite Me! Pattaya — еженедельный отчёт</p>
+</div>
+
+<div class="content">
+
+<div class="hint"><i class="ti ti-info-circle"></i> Заполняй каждую пятницу вечером. Выбери неделю, отметь выполненное, впиши цифры и нажми «Отправить отчёт» внизу.</div>
+
+<div class="section-label">Неделя</div>
+<div class="week-wrap" id="week-wrap"></div>
+<div class="week-desc" id="week-desc"></div>
+
+<div class="form-card">
+<h3><i class="ti ti-checklist" style="color:#1D9E75"></i>Онбординг — чек-лист недели</h3>
+<div id="milestone-list"></div>
+</div>
+
+<div class="form-card">
+<h3><i class="ti ti-cash-register" style="color:#378ADD"></i>Операции (эта неделя)</h3>
+<div class="two-col">
+<div class="form-row">
+<span class="form-label">POS отчётов</span>
+<input class="num-input" id="pos-reports" type="number" inputmode="numeric" placeholder="0" min="0">
+</div>
+<div class="form-row">
+<span class="form-label">Инвентаризаций</span>
+<input class="num-input" id="inventory" type="number" inputmode="numeric" placeholder="0" min="0">
+</div>
+</div>
+<div class="form-row">
+<span class="form-label">Проблем зафиксировано</span>
+<input class="num-input" id="issues" type="number" inputmode="numeric" placeholder="0" min="0">
+</div>
+<div class="form-row">
+<span class="form-label">Заметка (необязательно)</span>
+<textarea class="notes-input" id="ops-notes" rows="2" placeholder="Что случилось, если были проблемы..."></textarea>
+</div>
+</div>
+
+<div class="form-card">
+<h3><i class="ti ti-moped" style="color:#EF9F27"></i>LINE MAN (эта неделя)</h3>
+<div class="two-col">
+<div class="form-row">
+<span class="form-label">Заказов получено</span>
+<input class="num-input" id="orders-received" type="number" inputmode="numeric" placeholder="0" min="0" oninput="calcCompletion()">
+</div>
+<div class="form-row">
+<span class="form-label">Заказов выполнено</span>
+<input class="num-input" id="orders-completed" type="number" inputmode="numeric" placeholder="0" min="0" oninput="calcCompletion()">
+</div>
+</div>
+<div class="calc-row"><span>Completion rate</span><span class="calc-val" id="completion-rate">—</span></div>
+</div>
+
+<div class="form-card">
+<h3><i class="ti ti-speakerphone" style="color:#7F77DD"></i>Маркетинг (всего с начала)</h3>
+<div class="three-col">
+<div class="form-row">
+<span class="form-label">Сообщений</span>
+<input class="num-input" id="mkt-messages" type="number" inputmode="numeric" placeholder="0" min="0">
+</div>
+<div class="form-row">
+<span class="form-label">Дизайн</span>
+<input class="num-input" id="mkt-design" type="number" inputmode="numeric" placeholder="0" min="0">
+</div>
+<div class="form-row">
+<span class="form-label">Постов</span>
+<input class="num-input" id="mkt-posts" type="number" inputmode="numeric" placeholder="0" min="0">
+</div>
+</div>
+</div>
+
+<button class="submit-btn" onclick="submitReport()"><i class="ti ti-send"></i>Отправить отчёт</button>
+
+</div>
+</div>
+
+<div class="toast" id="toast"></div>
+
+<script>
+const weeks = [
+{ n: 1, range: '7–11 Jul', topic: 'POS и базовые операции', milestones: [
+'Освоил кассу / POS систему',
+'Знает меню и цены наизусть',
+'Умеет открывать и закрывать смену',
+'Провёл первый самостоятельный день'
+]},
+{ n: 2, range: '14–18 Jul', topic: 'Инвентаризация и процессы', milestones: [
+'Провёл первую полную инвентаризацию',
+'Знает процесс заказа продуктов у поставщиков',
+'Понимает расчёт food cost',
+'Ведёт учёт списаний/порчи'
+]},
+{ n: 3, range: '21–25 Jul', topic: 'LINE MAN и доставка', milestones: [
+'Настроил и разобрался в LINE MAN аккаунте',
+'Принял и обработал первый заказ',
+'Достиг 20+ заказов за неделю',
+'Знает процесс при проблемном заказе'
+]},
+{ n: 4, range: '28 Jul – 1 Aug', topic: 'Маркетинг и группы', milestones: [
+'Публикует в Instagram / Facebook',
+'Отвечает клиентам в чатах и группах',
+'Согласовывает дизайн постов',
+'Собрал минимум 3 отзыва от клиентов'
+]},
+{ n: 5, range: '4–8 Aug', topic: 'POS Day и автономия', milestones: [
+'Полностью самостоятельно ведёт смену',
+'Провёл POS Day без ошибок',
+'Финальная оценка онбординга пройдена',
+'Готов к работе без сопровождения'
+]}
+];
+
+let selectedWeek = 1;
+let doneMilestones = {};
+
+function renderWeeks() {
+const wrap = document.getElementById('week-wrap');
+wrap.innerHTML = weeks.map(w => `<button class="week-btn ${w.n===selectedWeek?'sel':''}" onclick="selectWeek(${w.n})">Неделя ${w.n}</button>`).join('');
+const w = weeks.find(w => w.n === selectedWeek);
+document.getElementById('week-desc').textContent = w.range + ' · ' + w.topic;
+}
+
+function selectWeek(n) {
+selectedWeek = n;
+renderWeeks();
+renderMilestones();
+}
+
+function renderMilestones() {
+const w = weeks.find(w => w.n === selectedWeek);
+if (!doneMilestones[selectedWeek]) doneMilestones[selectedWeek] = new Array(w.milestones.length).fill(false);
+const list = document.getElementById('milestone-list');
+list.innerHTML = w.milestones.map((m, i) => {
+const done = doneMilestones[selectedWeek][i];
+return `<div class="milestone ${done?'done':''}" onclick="toggleMilestone(${i})">
+<div class="milestone-check ${done?'done':''}">${done?'<i class="ti ti-check"></i>':''}</div>
+<div class="milestone-text">${m}</div>
+</div>`;
+}).join('');
+}
+
+function toggleMilestone(i) {
+doneMilestones[selectedWeek][i] = !doneMilestones[selectedWeek][i];
+renderMilestones();
+}
+
+function calcCompletion() {
+const rec = parseFloat(document.getElementById('orders-received').value) || 0;
+const comp = parseFloat(document.getElementById('orders-completed').value) || 0;
+const el = document.getElementById('completion-rate');
+if (rec === 0) { el.textContent = '—'; return; }
+el.textContent = Math.round((comp / rec) * 100) + '%';
+}
+
+function showToast(msg) {
+const t = document.getElementById('toast');
+t.textContent = msg;
+t.classList.add('show');
+setTimeout(() => t.classList.remove('show'), 3500);
+}
+
+function openCowork(msg) {
+const url = 'https://claude.ai/new?q=' + encodeURIComponent(msg);
+window.open(url, '_blank');
+}
+
+function submitReport() {
+const w = weeks.find(w => w.n === selectedWeek);
+const done = doneMilestones[selectedWeek] || [];
+const doneCount = done.filter(Boolean).length;
+const milestonesText = w.milestones.map((m, i) => (done[i] ? '✅ ' : '⬜ ') + m).join('\n');
+
+const pos = document.getElementById('pos-reports').value || '0';
+const inv = document.getElementById('inventory').value || '0';
+const issues = document.getElementById('issues').value || '0';
+const opsNotes = document.getElementById('ops-notes').value.trim();
+
+const rec = document.getElementById('orders-received').value || '0';
+const comp = document.getElementById('orders-completed').value || '0';
+const rate = document.getElementById('completion-rate').textContent;
+
+const msgs = document.getElementById('mkt-messages').value || '0';
+const design = document.getElementById('mkt-design').value || '0';
+const posts = document.getElementById('mkt-posts').value || '0';
+
+let text = 'Обнови Max KPI Tracker (Google Sheet) за Неделю ' + w.n + ' (' + w.range + ', ' + w.topic + '):\n\n';
+text += 'ОНБОРДИНГ: ' + doneCount + ' из ' + w.milestones.length + ' выполнено\n' + milestonesText + '\n\n';
+text += 'ОПЕРАЦИИ: POS отчётов ' + pos + ', инвентаризаций ' + inv + ', проблем ' + issues;
+if (opsNotes) text += '. Заметка: ' + opsNotes;
+text += '\n\n';
+text += 'LINE MAN: получено ' + rec + ', выполнено ' + comp + ', completion rate ' + rate + '\n\n';
+text += 'МАРКЕТИНГ (всего с начала): сообщений ' + msgs + ', дизайн-решений ' + design + ', постов ' + posts;
+
+showToast('Открываю Claude для сохранения...');
+setTimeout(() => openCowork(text), 400);
+}
+
+renderWeeks();
+renderMilestones();
+</script>
+</body>
+</html>
